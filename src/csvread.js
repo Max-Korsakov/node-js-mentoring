@@ -9,7 +9,7 @@ function mapCsvToJson(){
     const dirPath = path.join(path.resolve(), './csv/');
     pipeline(
       fs.createReadStream(dirPath + 'input.csv'),
-      csv(),
+      csv({ignoreColumns: /Amount/}),
       fs.createWriteStream(dirPath + 'csv.txt'),
       log
       )

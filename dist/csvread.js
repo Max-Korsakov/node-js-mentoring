@@ -13,7 +13,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 function mapCsvToJson() {
   var dirPath = _path["default"].join(_path["default"].resolve(), './csv/');
 
-  (0, _stream.pipeline)(_fs["default"].createReadStream(dirPath + 'input.csv'), (0, _csvtojson["default"])(), _fs["default"].createWriteStream(dirPath + 'csv.txt'), log);
+  (0, _stream.pipeline)(_fs["default"].createReadStream(dirPath + 'input.csv'), (0, _csvtojson["default"])({
+    ignoreColumns: /Amount/
+  }), _fs["default"].createWriteStream(dirPath + 'csv.txt'), log);
 }
 
 function log(err) {
