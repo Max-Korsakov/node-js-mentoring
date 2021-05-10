@@ -8,14 +8,14 @@ var _path = _interopRequireDefault(require("path"));
 
 var _csvtojson = _interopRequireDefault(require("csvtojson"));
 
-var _split = _interopRequireDefault(require("split2"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function mapCsvToJson() {
   var dirPath = _path["default"].join(_path["default"].resolve(), './csv/');
 
-  (0, _stream.pipeline)(_fs["default"].createReadStream(dirPath + 'input.csv'), (0, _split["default"])(), (0, _csvtojson["default"])(), _fs["default"].createWriteStream(dirPath + 'csv.txt'), log);
+  (0, _stream.pipeline)(_fs["default"].createReadStream(dirPath + 'input.csv'), (0, _csvtojson["default"])({
+    ignoreColumns: /Amount/
+  }), _fs["default"].createWriteStream(dirPath + 'csv.txt'), log);
 }
 
 function log(err) {
